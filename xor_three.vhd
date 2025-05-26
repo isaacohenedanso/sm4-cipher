@@ -1,16 +1,15 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity xor_three is
-	port(
-		INPT_A, INPT_B, INPT_C: in std_logic_vector(31 downto 0);
-		OUTP: out std_logic_vector(31 downto 0)
+ENTITY xor_three IS
+	PORT (
+		INPT_A, INPT_B, INPT_C : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		OUTP : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
 	);
-end xor_three;
+END xor_three;
 
-architecture Behavioral of xor_three is
+ARCHITECTURE Behavioral OF xor_three IS
 
-begin
-	OUTP <= INPT_A xor INPT_B xor INPT_C;
-end Behavioral;
-
+BEGIN
+	OUTP <= INPT_A XOR INPT_B XOR INPT_C;
+END Behavioral;

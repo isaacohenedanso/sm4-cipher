@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="C:/Users/ahabn/Desktop/SM4_CIPHER/SM4_TOP_MODEL_IMPLEMENTATION_isim_beh.wdb" id="1" type="fixed">
+         <top_modules>
+            <top_module name="numeric_std" />
+            <top_module name="sm4_top_model_implementation" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+      <db_ref path="C:/Users/ahabn/Desktop/SM4_CIPHER/SM4_TOP_MODEL_IMPLEMENTATION_isim_beh.wdb" id="2" type="auto">
+         <top_modules>
+            <top_module name="numeric_std" />
+            <top_module name="sm4_top_model_implementation" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/sm4_top_model_implementation/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/clr" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clr</obj_property>
+      <obj_property name="ObjectShortName">clr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/enc_dec" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">enc_dec</obj_property>
+      <obj_property name="ObjectShortName">enc_dec</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/masterkey" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">masterkey[127:0]</obj_property>
+      <obj_property name="ObjectShortName">masterkey[127:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/inputtext" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">inputtext[127:0]</obj_property>
+      <obj_property name="ObjectShortName">inputtext[127:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/outputtext" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">outputtext[127:0]</obj_property>
+      <obj_property name="ObjectShortName">outputtext[127:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/Datapath0/CounterAndRam0/count" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">count[4:0]</obj_property>
+      <obj_property name="ObjectShortName">count[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/Datapath0/KeyExpansionUnit0/roundkey" type="array" db_ref_id="2">
+      <obj_property name="ElementShortName">roundkey[31:0]</obj_property>
+      <obj_property name="ObjectShortName">roundkey[31:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/Datapath0/EncryptionDecryptionUnit0/fromxor2_0" type="array" db_ref_id="2">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">fromxor2_0[31:0]</obj_property>
+      <obj_property name="ObjectShortName">fromxor2_0[31:0]</obj_property>
+      <obj_property name="label">X</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider57" type="divider">
+      <obj_property name="label">keyExpansionCU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/KeyExpansionCU0/ps" type="other" db_ref_id="2">
+      <obj_property name="ElementShortName">ps</obj_property>
+      <obj_property name="ObjectShortName">ps</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/KeyExpansionCU0/ns" type="other" db_ref_id="2">
+      <obj_property name="ElementShortName">ns</obj_property>
+      <obj_property name="ObjectShortName">ns</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider27" type="divider">
+      <obj_property name="label">EncryptionDecryptionCU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="BkColor">128 128 255</obj_property>
+      <obj_property name="TextColor">230 230 230</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/EncryptionDecryptionCU0/ps" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">ps</obj_property>
+      <obj_property name="ObjectShortName">ps</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sm4_top_model_implementation/EncryptionDecryptionCU0/ns" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">ns</obj_property>
+      <obj_property name="ObjectShortName">ns</obj_property>
+   </wvobject>
+</wave_config>

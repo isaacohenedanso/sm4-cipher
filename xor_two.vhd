@@ -1,16 +1,15 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity xor_two is
-	port(
-		INPT_A, INPT_B: in std_logic_vector(31 downto 0);
-		OUTP: out std_logic_vector(31 downto 0)
+ENTITY xor_two IS
+	PORT (
+		INPT_A, INPT_B : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		OUTP : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
 	);
-end xor_two;
+END xor_two;
 
-architecture Behavioral of xor_two is
+ARCHITECTURE Behavioral OF xor_two IS
 
-begin
-	OUTP <= INPT_A xor INPT_B;
-end Behavioral;
-
+BEGIN
+	OUTP <= INPT_A XOR INPT_B;
+END Behavioral;

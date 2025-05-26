@@ -1,22 +1,19 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity mux128 is
-	port(
-			SEL: in  std_logic;
-			INPT_A, INPT_B: in std_logic_vector(127 downto 0);
-			OUTP: out std_logic_vector(127 downto 0)
+ENTITY mux128 IS
+	PORT (
+		SEL : IN STD_LOGIC;
+		INPT_A, INPT_B : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+		OUTP : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
 	);
-end mux128;
+END mux128;
 
-architecture Behavioral of mux128 is
+ARCHITECTURE Behavioral OF mux128 IS
 
-begin
-	with SEL select 
-		OUTP <= INPT_A when '0',
-					INPT_B when '1',
-					(others => '0') when others;
-
-
-end Behavioral;
-
+BEGIN
+	WITH SEL SELECT
+		OUTP <= INPT_A WHEN '0',
+		INPT_B WHEN '1',
+		(OTHERS => '0') WHEN OTHERS;
+END Behavioral;

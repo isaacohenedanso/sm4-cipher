@@ -1,15 +1,15 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.NUMERIC_STD.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
 --
-entity substractor is
-	port(
-		INPT: in unsigned(4 downto 0);
-		OUTP: out std_logic_vector(4 downto 0)
+ENTITY substractor IS
+	PORT (
+		INPT : IN unsigned(4 DOWNTO 0);
+		OUTP : OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
 	);
-end substractor;
+END substractor;
 
-architecture Behavioral of substractor is
-begin
-	OUTP <= std_logic_vector(31 - INPT);
-end Behavioral;
+ARCHITECTURE Behavioral OF substractor IS
+BEGIN
+	OUTP <= STD_LOGIC_VECTOR(31 - INPT);
+END Behavioral;

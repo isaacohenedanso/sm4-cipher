@@ -1,21 +1,19 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity mux1 is
-	port(
-			SEL: in  std_logic;
-			INPT_A, INPT_B: in std_logic;
-			OUTP: out std_logic
+ENTITY mux1 IS
+	PORT (
+		SEL : IN STD_LOGIC;
+		INPT_A, INPT_B : IN STD_LOGIC;
+		OUTP : OUT STD_LOGIC
 	);
-end mux1;
+END mux1;
 
-architecture Behavioral of mux1 is
+ARCHITECTURE Behavioral OF mux1 IS
 
-begin
-	with SEL select 
-		OUTP <= INPT_A when '0',
-					INPT_B when '1',
-					'Z' when others;
-
-
-end Behavioral;
+BEGIN
+	WITH SEL SELECT
+		OUTP <= INPT_A WHEN '0',
+		INPT_B WHEN '1',
+		'Z' WHEN OTHERS;
+END Behavioral;

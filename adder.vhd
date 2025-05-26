@@ -1,15 +1,15 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.NUMERIC_STD.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
 --
-entity adder is
-	port(
-		INPT: in unsigned(4 downto 0);
-		OUTP: out std_logic_vector(4 downto 0)
+ENTITY adder IS
+	PORT (
+		INPT : IN unsigned(5 DOWNTO 0);
+		OUTP : OUT STD_LOGIC_VECTOR(5 DOWNTO 0)
 	);
-end adder;
+END adder;
 
-architecture Behavioral of adder is
-begin
-	OUTP <= std_logic_vector(INPT	+ 1);
-end Behavioral;
+ARCHITECTURE Behavioral OF adder IS
+BEGIN
+	OUTP <= STD_LOGIC_VECTOR(INPT + 1);
+END Behavioral;

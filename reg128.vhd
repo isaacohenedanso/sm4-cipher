@@ -1,23 +1,22 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity reg128 is	
-	port(
-		CLK, LOAD: in std_logic;
-		D: in std_logic_vector(127 downto 0);
-		Q: out std_logic_vector(127 downto 0)
+ENTITY reg128 IS
+	PORT (
+		CLK, LOAD : IN STD_LOGIC;
+		D : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+		Q : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
 	);
-end reg128;
+END reg128;
 
-architecture Behavioral of reg128 is
-begin
-	process(CLK) is
-		begin
-			if(rising_edge(CLK)) then
-				if(LOAD = '1') then
-					Q <= D;
-				end if;
-			end if;
-	end process;
-end Behavioral;
-
+ARCHITECTURE Behavioral OF reg128 IS
+BEGIN
+	PROCESS (CLK) IS
+	BEGIN
+		IF (rising_edge(CLK)) THEN
+			IF (LOAD = '1') THEN
+				Q <= D;
+			END IF;
+		END IF;
+	END PROCESS;
+END Behavioral;

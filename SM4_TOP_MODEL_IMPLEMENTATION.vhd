@@ -1,91 +1,98 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity SM4_TOP_MODEL_IMPLEMENTATION is
-	port(
-		INPUTTEXT, MASTERKEY: in std_logic_vector(127 downto 0);
-		ENC_DEC, CLK, RST: in std_logic;
-		OUTPUTTEXT: out std_logic_vector(127 downto 0)
-	);
-end SM4_TOP_MODEL_IMPLEMENTATION;
+ENTITY SM4_TOP_MODEL_IMPLEMENTATION IS
+    PORT (
+        CLK, CLR, ENC_DEC : IN STD_LOGIC;
+        MASTERKEY, INPUTTEXT : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+        OUTPUTTEXT : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
+    );
+END SM4_TOP_MODEL_IMPLEMENTATION;
 
-architecture Behavioral of SM4_TOP_MODEL_IMPLEMENTATION is
+ARCHITECTURE BEHAVIORAL OF SM4_TOP_MODEL_IMPLEMENTATION IS
+    COMPONENT Datapath IS
+        PORT (
+            INPUTTEXT, MASTERKEY : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+            OUTPUTTEXT : OUT STD_LOGIC_VECTOR(127 DOWNTO 0);
+            ENC_DEC, CLK, CLR, MKLOAD, ILOAD, XLOAD, MUXSEL1, MUXSEL2, MUXSEL3, MUXSEL4, WRITE_EN, OUTEN : IN STD_LOGIC;
+            ILT32 : OUT STD_LOGIC
+        );
+    END COMPONENT;
+    COMPONENT KeyExpansionCU IS
+        PORT (
+            CLR, CLK : IN STD_LOGIC;
+            Ilt32 : IN STD_LOGIC;
+            RST, WRITE_EN, MKLOAD, ILOAD, MUXSEL1, MUXSEL2, ROLLOVER : OUT STD_LOGIC
+        );
+    END COMPONENT;
+    COMPONENT EncryptionDecryptionCU IS
+        PORT (
+            CLR, CLK : IN STD_LOGIC;
+            ILT32 : IN STD_LOGIC;
+            RST, WRITE_EN, XLOAD, ILOAD, MUXSEL3, OUTEN : OUT STD_LOGIC
+        );
+    END COMPONENT;
+    COMPONENT mux3 IS
+        PORT (
+            INPT_A, INPT_B : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+            SEL : IN STD_LOGIC;
+            OUTP : OUT STD_LOGIC_VECTOR(2 DOWNTO 0)
+        );
+    END COMPONENT;
 
-component FSM_KEYGEN is
-	port(
-		RST,CLK: in std_logic;
-		Ilt32: in std_logic;
-		WRITE_EN_KEY, MKLOAD, ILOAD_KEY, MUXSEL1, MUXSEL2, MUXSEL4_KEY: out std_logic		
-	);
-end component;
+    SIGNAL IL32, MUX1, MUX2, SMUX3, ILD_KEY, ILD_ENC, W_KEY, W_ENC, ROLL, S_ROLL, MKLD, XLD, EN, RST_KEY, RST_ENC : STD_LOGIC;
+    SIGNAL CTRL_KEY, CTRL_ENC, FROMMUX3 : STD_LOGIC_VECTOR(2 DOWNTO 0);
+BEGIN
 
-component FSM_ROUNDFUNC is
-	port(
-		RST,CLK: in std_logic;
-		Ilt32: in std_logic;
-		WRITE_EN_ROUND, XLOAD, ILOAD_ROUND, MUXSEL3, MUXSEL4_ROUND, OUTEN: out std_logic		
-	);
-end component;
+    S_ROLL <= NOT ROLL;
+    CTRL_KEY <= RST_KEY & W_KEY & ILD_KEY;
+    CTRL_ENC <= RST_ENC & W_ENC & ILD_ENC;
 
-component DP is
-	port(
-		INPUTTEXT, MASTERKEY: in std_logic_vector(127 downto 0);
-		OUTPUTTEXT: out std_logic_vector(127 downto 0);
-		ENC_DEC, CLK, RST, MKLOAD, ILOAD, XLOAD, MUXSEL1, MUXSEL2, MUXSEL3, MUXSEL4, OUTEN, WRITE_EN: in std_logic;
-		ILT32: out std_logic
-	);
-end component;
-
-signal SIG_MKLOAD, SIG_ILOAD, SIG_XLOAD, IL32, MUX1, MUX2, MUX3, MUX4, OUTPUT_EN, SIG_WRITE_EN, MUX4_KEY, MUX4_ROUND: std_logic;
-signal SIG_ILOAD_KEY, SIG_ILOAD_ROUND: std_logic;  -- Separate ILOAD signals
-signal SIG_WRITE_EN_KEY, SIG_WRITE_EN_ROUND: std_logic;
-begin
-
- SIG_WRITE_EN <= SIG_WRITE_EN_KEY or SIG_WRITE_EN_ROUND;  -- Combine write enables
- SIG_ILOAD <= SIG_ILOAD_KEY or SIG_ILOAD_ROUND;  -- Combine ILOAD signals
--- READ_RAM <= not SIG_XLOAD;
- MUX4 <= MUX4_KEY or MUX4_ROUND;
-
- DP0: DP port map(
-	  INPUTTEXT => INPUTTEXT,
-	  MASTERKEY => MASTERKEY,
-	  ENC_DEC => ENC_DEC,
-	  OUTPUTTEXT => OUTPUTTEXT,
-	  CLK => CLK,
-	  RST => RST,
-	  MKLOAD => SIG_MKLOAD,
-	  ILOAD => SIG_ILOAD,
-	  XLOAD => SIG_XLOAD,
-	  MUXSEL1 => MUX1,
-	  MUXSEL2 => MUX2,
-	  MUXSEL3 => MUX3,
-	  MUXSEL4 => MUX4,
-	  ILT32 => IL32,
-	  OUTEN => OUTPUT_EN,
-	  WRITE_EN => SIG_WRITE_EN
- );
- FSM_KEYGEN0: FSM_KEYGEN port map(
-	  RST => RST,
-	  CLK => CLK,
-	  ILT32 => IL32,
-	  WRITE_EN_KEY => SIG_WRITE_EN_KEY,
-	  MKLOAD => SIG_MKLOAD,
-	  ILOAD_KEY => SIG_ILOAD_KEY,
-	  MUXSEL1 => MUX1,
-	  MUXSEL2 => MUX2,
-	  MUXSEL4_KEY => MUX4_KEY
- );
- FSM_ROUNDFUNC0: FSM_ROUNDFUNC port map(
-	  RST => RST,
-	  CLK => CLK,
-	  ILT32 => IL32,
-	  WRITE_EN_ROUND => SIG_WRITE_EN_ROUND,
-	  XLOAD => SIG_XLOAD,
-	  ILOAD_ROUND => SIG_ILOAD_ROUND,
-	  MUXSEL3 => MUX3,
-	  MUXSEL4_ROUND => MUX4_ROUND,
-	  OUTEN => OUTPUT_EN
- );
-
-end Behavioral;
-
+    Datapath0 : Datapath PORT MAP(
+        INPUTTEXT => INPUTTEXT,
+        MASTERKEY => MASTERKEY,
+        OUTPUTTEXT => OUTPUTTEXT,
+        ENC_DEC => ENC_DEC,
+        CLK => CLK,
+        CLR => FROMMUX3(2),
+        MKLOAD => MKLD,
+        ILOAD => FROMMUX3(0),
+        XLOAD => XLD,
+        MUXSEL1 => MUX1,
+        MUXSEL2 => MUX2,
+        MUXSEL3 => SMUX3,
+        MUXSEL4 => ROLL,
+        WRITE_EN => FROMMUX3(1),
+        OUTEN => EN,
+        ILT32 => IL32
+    );
+    KeyExpansionCU0 : KeyExpansionCU PORT MAP(
+        CLR => CLR,
+        CLK => CLK,
+        RST => RST_KEY,
+        ILT32 => IL32,
+        WRITE_EN => W_KEY,
+        MKLOAD => MKLD,
+        ILOAD => ILD_KEY,
+        MUXSEL1 => MUX1,
+        MUXSEL2 => MUX2,
+        ROLLOVER => ROLL
+    );
+    EncryptionDecryptionCU0 : EncryptionDecryptionCU PORT MAP(
+        CLR => S_ROLL,
+        CLK => CLK,
+        RST => RST_ENC,
+        ILT32 => IL32,
+        WRITE_EN => W_ENC,
+        XLOAD => XLD,
+        ILOAD => ILD_ENC,
+        MUXSEL3 => SMUX3,
+        OUTEN => EN
+    );
+    mux3_0 : mux3 PORT MAP(
+        INPT_A => CTRL_KEY,
+        INPT_B => CTRL_ENC,
+        SEL => ROLL,
+        OUTP => FROMMUX3
+    );
+END BEHAVIORAL;

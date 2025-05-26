@@ -1,19 +1,18 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity tribuffer is
-	port(
-		INPT: in std_logic_vector(127 downto 0);
-		EN: in std_logic;
-		OUTP: out std_logic_vector(127 downto 0)
+ENTITY tribuffer IS
+	PORT (
+		INPT : IN STD_LOGIC_VECTOR(127 DOWNTO 0);
+		EN : IN STD_LOGIC;
+		OUTP : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
 	);
-end tribuffer;
+END tribuffer;
 
-architecture Behavioral of tribuffer is
+ARCHITECTURE Behavioral OF tribuffer IS
 
-begin
-with EN select
-	OUTP <= INPT when  '1',
-		(others => '0') when others;
-end Behavioral;
-
+BEGIN
+	WITH EN SELECT
+		OUTP <= INPT WHEN '1',
+		"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ" WHEN OTHERS;
+END Behavioral;

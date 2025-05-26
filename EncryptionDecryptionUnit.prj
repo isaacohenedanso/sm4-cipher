@@ -1,0 +1,8 @@
+vhdl work "xor_two.vhd"
+vhdl work "xor_four.vhd"
+vhdl work "xor_five.vhd"
+vhdl work "tribuffer.vhd"
+vhdl work "sbox.vhd"
+vhdl work "reg128.vhd"
+vhdl work "mux128.vhd"
+vhdl work "EncryptionDecryptionUnit.vhd"

@@ -1,32 +1,31 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.NUMERIC_STD.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
 
-entity ram is
-	port(
-		CLK: in std_logic;
-		ROUNDKEY: in std_logic_vector(31 downto 0);
-		ADDRESS: in std_logic_vector(4 downto 0);
-		WRITE_READ: in std_logic;
-		RKi: out std_logic_vector(31 downto 0)
+ENTITY ram IS
+	PORT (
+		CLK : IN STD_LOGIC;
+		ROUNDKEY_IN : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		ADDRESS : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+		WRITE_READ : IN STD_LOGIC;
+		ROUNDKEY_OUT : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
 	);
-end ram;
+END ram;
 
-architecture Behavioral of ram is
-type ram is array(0 to 31) of std_logic_vector(31 downto 0);
-signal RAMDATA: ram;
-begin
-	process(CLK) is 
-		begin
-			if(rising_edge(CLK)) then
-				if (WRITE_READ = '0') then
-                -- Read operation
-                RKi <= RAMDATA(to_integer(unsigned(ADDRESS)));
-            else
-                -- Write operation
-                RAMDATA(to_integer(unsigned(ADDRESS))) <= ROUNDKEY;
-            end if;
-			end if;
-	end process;
-end Behavioral;
-
+ARCHITECTURE Behavioral OF ram IS
+	TYPE ram IS ARRAY(0 TO 31) OF STD_LOGIC_VECTOR(31 DOWNTO 0);
+	SIGNAL RAMDATA : ram;
+BEGIN
+	PROCESS (CLK) IS
+	BEGIN
+		IF (rising_edge(CLK)) THEN
+			IF (WRITE_READ = '0') THEN
+				-- Read operation
+				ROUNDKEY_OUT <= RAMDATA(to_integer(unsigned(ADDRESS)));
+			ELSE
+				-- Write operation
+				RAMDATA(to_integer(unsigned(ADDRESS))) <= ROUNDKEY_IN;
+			END IF;
+		END IF;
+	END PROCESS;
+END Behavioral;

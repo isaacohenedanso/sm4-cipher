@@ -1,24 +1,24 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity regi is	
-	port(
-		CLK, LOAD, RST: in std_logic;
-		D: in std_logic_vector(4 downto 0);
-		Q: out std_logic_vector(4 downto 0)
+ENTITY regi IS
+	PORT (
+		CLK, LOAD, RST : IN STD_LOGIC;
+		D : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+		Q : OUT STD_LOGIC_VECTOR(5 DOWNTO 0)
 	);
-end regi;
+END regi;
 
-architecture Behavioral of regi is
-begin
-	process(CLK, RST) is
-		begin
-			if(RST = '1') then
-				Q <= "00000";
-			elsif(rising_edge(CLK)) then
-				if(LOAD = '1') then
-					Q <= D;
-				end if;
-			end if;
-	end process;
-end Behavioral;
+ARCHITECTURE Behavioral OF regi IS
+BEGIN
+	PROCESS (CLK, RST) IS
+	BEGIN
+		IF (RST = '1') THEN
+			Q <= "000000";
+		ELSIF (rising_edge(CLK)) THEN
+			IF (LOAD = '1') THEN
+				Q <= D;
+			END IF;
+		END IF;
+	END PROCESS;
+END Behavioral;

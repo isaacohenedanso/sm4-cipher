@@ -1,17 +1,16 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity xor_five is
-	port (
-		INPT_A, INPT_B, INPT_C, INPT_D, INPT_E: in std_logic_vector(31 downto 0);
-		OUTP: out std_logic_vector(31 downto 0)
+ENTITY xor_five IS
+	PORT (
+		INPT_A, INPT_B, INPT_C, INPT_D, INPT_E : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		OUTP : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
 	);
-end xor_five;
+END xor_five;
 
-architecture Behavioral of xor_five is
+ARCHITECTURE Behavioral OF xor_five IS
 
-begin
-OUTP <= INPT_A xor INPT_B xor INPT_C xor INPT_D xor INPT_E;
+BEGIN
+	OUTP <= INPT_A XOR INPT_B XOR INPT_C XOR INPT_D XOR INPT_E;
 
-end Behavioral;
-
+END Behavioral;

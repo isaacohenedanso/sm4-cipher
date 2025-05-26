@@ -1,21 +1,19 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
-entity mux5 is
-	port(
-			SEL: in  std_logic;
-			INPT_A, INPT_B: in std_logic_vector(4 downto 0);
-			OUTP: out std_logic_vector(4 downto 0)
+ENTITY mux5 IS
+	PORT (
+		SEL : IN STD_LOGIC;
+		INPT_A, INPT_B : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+		OUTP : OUT STD_LOGIC_VECTOR(4 DOWNTO 0)
 	);
-end mux5;
+END mux5;
 
-architecture Behavioral of mux5 is
+ARCHITECTURE Behavioral OF mux5 IS
 
-begin
-	with SEL select 
-		OUTP <= INPT_A when '0',
-					INPT_B when '1',
-					(others => '0') when others;
-
-
-end Behavioral;
+BEGIN
+	WITH SEL SELECT
+		OUTP <= INPT_A WHEN '0',
+		INPT_B WHEN '1',
+		(OTHERS => '0') WHEN OTHERS;
+END Behavioral;
