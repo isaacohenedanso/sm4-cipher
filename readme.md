@@ -16,13 +16,13 @@ There are also two control units, keyExpansionCU and EncryptionDecryptionCu for 
 
 ## SCREENSHOTS
 - Key Generation;
-![Example 1](screenshots/key.png)
+![Key Generation](screenshots/keygen.png)
 
 - Encryption;
-![Example 2](screenshots/enc.png)
+![Encryption](screenshots/enc.png)
 
 - Decryption;
-![Example 2](screenshots/dec.png)
+![Decryption](screenshots/dec.png)
 
 
 ## MY PROCESS
