@@ -35,11 +35,8 @@ EncryptionDecryption unit also have the linear transformation unit L which works
 - Key Generation DP
 ![KeyGen DP](Images/KeyGen.drawio.png "KeyGen DP")
 
-- Counter And Key Storage DP
+- Counter And Key Storage DP;
 ![CounterAndKeyStorage DP](Images/CounterAndKeyStorage.drawio.png)
-
-- Substitution box(Sbox) contents
-![Sbox](Images/sbox.png)
 
 - Encryption / Decryption DP
 ![EncryptionDecryption DP](Images/EncDec.drawio.png)
